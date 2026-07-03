@@ -109,6 +109,12 @@ Subir a API localmente:
 uvicorn src.telco_churn_mlops.api:app --reload
 ```
 
+Treinar a MLP:
+
+```bash
+python -m telco_churn_mlops.train_mlp
+```
+
 ## Plano De Entrega
 
 1. Entendimento do problema, EDA e baselines.

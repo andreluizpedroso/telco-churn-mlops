@@ -24,18 +24,10 @@ def test_clean_telco_data_converts_total_charges_and_target():
     assert cleaned["Churn"].tolist() == [1, 0]
 
 
-def test_split_train_test_preserves_target_classes():
+def test_split_train_test_preserves_target_classes(sample_churn_dataframe):
     # Criamos uma base balanceada artificial para confirmar que o split
     # estratificado mantem as duas classes em treino e teste.
-    df = pd.DataFrame(
-        {
-            "customerID": [f"id-{i}" for i in range(20)],
-            "TotalCharges": [float(i) for i in range(20)],
-            "Churn": [0] * 10 + [1] * 10,
-        }
-    )
-
-    train_df, test_df = split_train_test(df, test_size=0.25, random_state=42)
+    train_df, test_df = split_train_test(sample_churn_dataframe, test_size=0.25, random_state=42)
 
     assert train_df.shape[0] == 15
     assert test_df.shape[0] == 5
