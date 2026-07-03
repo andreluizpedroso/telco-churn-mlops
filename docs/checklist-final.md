@@ -32,10 +32,11 @@
 
 ## MLflow
 
-- [ ] Tracking com MLflow instalado e executado.
-- [ ] Parametros registrados.
-- [ ] Metricas registradas.
-- [ ] Artefatos registrados.
+- [x] Tracking com MLflow implementado no codigo.
+- [x] Parametros preparados para registro.
+- [x] Metricas preparadas para registro.
+- [x] Artefatos preparados para registro.
+- [ ] Execucao validada em ambiente com MLflow instalado.
 
 ## API
 

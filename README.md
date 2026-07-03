@@ -26,7 +26,7 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 | Visualizacoes de EDA | Publicadas em `reports/figures/` |
 | API FastAPI | Concluida com baseline de Regressao Logistica |
 | MLP PyTorch | Implementada; treino real depende de PyTorch no ambiente ativo |
-| MLflow | Pendente de execucao no ambiente ativo |
+| MLflow | Tracking implementado; execucao depende de MLflow instalado no ambiente ativo |
 | Documentacao final | Publicada em `docs/` com os documentos exigidos pela entrega |
 
 ## Objetivos
@@ -72,6 +72,7 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 |       |-- data.py                   # Carga, limpeza e split dos dados
 |       |-- features.py               # Preprocessing tabular
 |       |-- inference.py              # Carregamento e predicao do modelo
+|       |-- mlflow_tracking.py         # Tracking opcional com MLflow
 |       |-- mlp.py                    # Arquitetura MLP em PyTorch
 |       |-- schemas.py                # Schemas Pydantic da API
 |       |-- train_baseline_model.py   # Gera artefato usado pela API
@@ -205,6 +206,8 @@ Gere os dados processados e as metricas dos baselines:
 python -m telco_churn_mlops.baselines
 ```
 
+Se MLflow estiver instalado, esse comando tambem registra parametros, metricas e artefatos no experimento `telco-churn-mlops`.
+
 Gere o artefato usado pela API:
 
 ```bash
@@ -257,6 +260,12 @@ Treinar a MLP:
 ```bash
 $env:PYTHONPATH="src"
 python -m telco_churn_mlops.train_mlp
+```
+
+Abrir a interface local do MLflow:
+
+```bash
+mlflow ui
 ```
 
 Exemplo de payload para `/predict`:

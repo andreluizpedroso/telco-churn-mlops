@@ -17,6 +17,7 @@ from sklearn.model_selection import train_test_split
 from telco_churn_mlops.config import MODELS_DIR, RANDOM_STATE
 from telco_churn_mlops.data import TARGET_COLUMN, prepare_processed_data
 from telco_churn_mlops.features import build_preprocessor, split_features_target
+from telco_churn_mlops.mlflow_tracking import log_mlp_results
 from telco_churn_mlops.mlp import ChurnMLP, ensure_torch_is_available, torch
 
 
@@ -229,6 +230,9 @@ def train_mlp(config: MLPTrainingConfig | None = None) -> dict[str, Any]:
         },
     }
     metrics_file.write_text(json.dumps(results, indent=2), encoding="utf-8")
+
+    # Registra os resultados da MLP quando MLflow esta disponivel.
+    log_mlp_results(results, metrics_file=metrics_file)
     return results
 
 

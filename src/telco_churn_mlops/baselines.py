@@ -21,6 +21,7 @@ from sklearn.pipeline import Pipeline
 from telco_churn_mlops.config import BASELINE_RESULTS_FILE, RANDOM_STATE
 from telco_churn_mlops.data import prepare_processed_data
 from telco_churn_mlops.features import build_preprocessor, split_features_target
+from telco_churn_mlops.mlflow_tracking import log_baseline_results
 
 
 def evaluate_classifier(model: Pipeline, x_test: pd.DataFrame, y_test: pd.Series) -> dict[str, Any]:
@@ -114,6 +115,10 @@ def run_baselines() -> dict[str, Any]:
 
     # Persistimos as metricas para documentacao e comparacao com a MLP.
     BASELINE_RESULTS_FILE.write_text(json.dumps(results, indent=2), encoding="utf-8")
+
+    # Se MLflow estiver instalado, registramos parametros, metricas e artefatos.
+    # Se nao estiver, o helper apenas avisa e o pipeline continua funcionando.
+    log_baseline_results(results, artifact_path=BASELINE_RESULTS_FILE)
     return results
 
 
