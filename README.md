@@ -43,13 +43,29 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 ```text
 .
 |-- data/
-|   |-- raw/          # Dados originais
-|   `-- processed/    # Dados tratados
-|-- docs/             # Documentacao final publicada
-|-- models/           # Modelos e artefatos treinados
-|-- notebooks/        # EDA e experimentos exploratorios
-|-- src/              # Codigo reutilizavel do projeto
-`-- tests/            # Testes automatizados
+|   |-- raw/                         # Dados originais locais
+|   `-- processed/                   # Dados tratados gerados pelo pipeline
+|-- docs/                            # Documentacao final publicada
+|   |-- arquitetura.md
+|   |-- checklist-final.md
+|   |-- model-card.md
+|   |-- monitoramento.md
+|   `-- roteiro-star.md
+|-- models/                          # Artefatos treinados locais
+|-- notebooks/
+|   `-- 01_eda_baselines.ipynb       # EDA e baselines
+|-- src/
+|   `-- telco_churn_mlops/
+|       |-- api.py                    # FastAPI: /health e /predict
+|       |-- baselines.py              # Treino e avaliacao dos baselines
+|       |-- data.py                   # Carga, limpeza e split dos dados
+|       |-- features.py               # Preprocessing tabular
+|       |-- inference.py              # Carregamento e predicao do modelo
+|       |-- mlp.py                    # Arquitetura MLP em PyTorch
+|       |-- schemas.py                # Schemas Pydantic da API
+|       |-- train_baseline_model.py   # Gera artefato usado pela API
+|       `-- train_mlp.py              # Treino da MLP
+`-- tests/                           # Testes automatizados
 ```
 
 Observacao: somente a documentacao final da entrega e versionada em `docs/`. Anotacoes internas de sprint e estudo continuam locais e ignoradas pelo Git.
