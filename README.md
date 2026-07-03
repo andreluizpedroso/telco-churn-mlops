@@ -164,6 +164,72 @@ Instale o projeto com dependencias de desenvolvimento:
 pip install -e ".[dev]"
 ```
 
+## Como Reproduzir
+
+Clone o repositorio:
+
+```bash
+git clone https://github.com/andreluizpedroso/telco-churn-mlops.git
+cd telco-churn-mlops
+```
+
+Crie o ambiente virtual e instale as dependencias:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -e ".[dev]"
+```
+
+Configure o caminho do pacote no PowerShell:
+
+```bash
+$env:PYTHONPATH="src"
+```
+
+Baixe o dataset publico Telco Customer Churn:
+
+```bash
+python scripts/download_data.py
+```
+
+O arquivo sera salvo localmente em:
+
+```text
+data/raw/Telco-Customer-Churn.csv
+```
+
+Gere os dados processados e as metricas dos baselines:
+
+```bash
+python -m telco_churn_mlops.baselines
+```
+
+Gere o artefato usado pela API:
+
+```bash
+python -m telco_churn_mlops.train_baseline_model
+```
+
+Suba a API:
+
+```bash
+uvicorn telco_churn_mlops.api:app --reload
+```
+
+Acesse:
+
+```text
+http://127.0.0.1:8000/health
+http://127.0.0.1:8000/docs
+```
+
+Para reproduzir os graficos, abra e execute:
+
+```text
+notebooks/01_eda_baselines.ipynb
+```
+
 ## Comandos
 
 Executar testes:
