@@ -1,67 +1,130 @@
 # Telco Churn MLOps
 
-Projeto do Tech Challenge Fase 01 para prever churn de clientes de telecomunicacoes usando boas praticas de Machine Learning Engineering.
+Projeto do Tech Challenge Fase 01 para prever churn de clientes de telecomunicacoes com uma rede neural MLP em PyTorch, comparacao com baselines em Scikit-Learn, rastreamento de experimentos com MLflow e API de inferencia com FastAPI.
 
-## Problema
+## Contexto
 
-Churn acontece quando um cliente cancela ou deixa de usar um servico. Em uma operadora de telecomunicacoes, prever churn ajuda o time de negocio a agir antes do cancelamento, oferecendo atendimento, beneficios ou campanhas de retencao para clientes com maior risco.
+Uma operadora de telecomunicacoes esta perdendo clientes em ritmo acelerado. A diretoria solicitou um modelo preditivo que classifique clientes com risco de cancelamento para apoiar acoes de retencao.
 
-Neste projeto, o objetivo e criar um modelo preditivo que classifique clientes com risco de churn e disponibilizar esse modelo por uma API.
+O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria, treinamento de modelos, comparacao de resultados, empacotamento do pipeline, API de inferencia, testes e documentacao final.
 
-## Como um junior deve pensar neste projeto
+## Objetivos
 
-Um projeto de machine learning profissional nao comeca pelo modelo. Primeiro precisamos entender o problema, organizar os dados, definir metricas, criar uma referencia simples e so depois comparar modelos mais complexos.
+- Analisar um dataset publico de churn em telecomunicacoes.
+- Criar baselines com Scikit-Learn.
+- Treinar uma rede neural MLP com PyTorch.
+- Comparar modelos usando metricas tecnicas e de negocio.
+- Registrar experimentos, parametros, metricas e artefatos com MLflow.
+- Disponibilizar inferencia por API com FastAPI.
+- Documentar limitacoes, vieses, arquitetura e plano de monitoramento.
 
-A rede neural MLP sera importante porque faz parte do desafio, mas ela precisa ser comparada com baselines. Se um modelo simples resolver melhor, precisamos saber explicar isso.
-
-## Estrutura do repositorio
+## Estrutura do Repositorio
 
 ```text
 .
-├── data/
-│   ├── raw/          # Dados originais, sem alteracao
-│   └── processed/    # Dados tratados para treino e avaliacao
-├── docs/             # Documentacao do projeto, sprints e estudos
-├── models/           # Modelos e artefatos treinados
-├── notebooks/        # Analises exploratorias e experimentos
-├── src/              # Codigo reutilizavel do projeto
-└── tests/            # Testes automatizados
+|-- data/
+|   |-- raw/          # Dados originais
+|   `-- processed/    # Dados tratados
+|-- docs/             # Documentacao, sprints, Model Card e roteiro STAR
+|-- models/           # Modelos e artefatos treinados
+|-- notebooks/        # EDA e experimentos exploratorios
+|-- src/              # Codigo reutilizavel do projeto
+`-- tests/            # Testes automatizados
 ```
 
-## Sprints
+## Requisitos Do Tech Challenge
 
-O projeto sera construido em sprints para facilitar aprendizado e entrega incremental.
-
-1. Fundacao do projeto
-2. EDA e modelos baseline
-3. Rede neural MLP com PyTorch
-4. Pipeline, testes e API
-5. Documentacao final, Model Card e roteiro STAR
-
-Veja o detalhe em [docs/sprints.md](docs/sprints.md).
+- Repositorio GitHub organizado.
+- README com instrucoes de setup, execucao e descricao do projeto.
+- `pyproject.toml` com configuracao do projeto.
+- Historico de commits claro e progressivo.
+- `.gitignore` adequado para artefatos de ML.
+- Seeds fixas para reproducibilidade.
+- Validacao estratificada.
+- Baselines com Scikit-Learn.
+- Rede neural MLP treinada com PyTorch.
+- Experimentos rastreados com MLflow.
+- API FastAPI com endpoints `/health` e `/predict`.
+- Validacao de entrada com Pydantic.
+- Logging estruturado.
+- Testes automatizados.
+- Linting com `ruff`.
+- Model Card com performance, limitacoes, vieses e cenarios de falha.
+- Plano de monitoramento.
+- Video final de ate 5 minutos no metodo STAR.
 
 ## Dataset
 
-A sugestao inicial e usar um dataset publico de churn em telecomunicacoes, como o Telco Customer Churn. O dataset final sera documentado na Sprint 2, junto com as decisoes de tratamento dos dados.
+A base sugerida e um dataset publico de churn em telecomunicacoes, como o Telco Customer Churn. A fonte final, o dicionario de dados e as decisoes de tratamento serao documentados durante a etapa de EDA.
 
-## Comandos planejados
+## Metricas
 
-Os comandos abaixo serao usados ao longo do projeto, depois que as dependencias forem instaladas.
+Metricas tecnicas planejadas:
+
+- ROC-AUC
+- F1-score
+- Precision
+- Recall
+- Matriz de confusao
+
+Metricas de negocio planejadas:
+
+- Custo estimado de falso positivo.
+- Custo estimado de falso negativo.
+- Estimativa de churn evitado.
+- Comparacao de trade-off entre reter clientes e evitar campanhas desnecessarias.
+
+## Setup
+
+Crie e ative um ambiente virtual:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+Instale o projeto com dependencias de desenvolvimento:
+
+```bash
+pip install -e ".[dev]"
+```
+
+## Comandos
+
+Executar testes:
 
 ```bash
 pytest
+```
+
+Executar lint:
+
+```bash
 ruff check .
+```
+
+Subir a API localmente:
+
+```bash
 uvicorn src.telco_churn_mlops.api:app --reload
 ```
 
-## Entregas esperadas
+## Plano De Entrega
 
-- Codigo organizado e versionado no GitHub.
-- Analise exploratoria dos dados.
-- Baselines com Scikit-Learn.
-- MLP treinada com PyTorch.
-- Experimentos rastreados com MLflow.
-- API de inferencia com FastAPI.
-- Testes automatizados.
-- Model Card e plano de monitoramento.
-- Video final de ate 5 minutos usando o metodo STAR.
+1. Entendimento do problema, EDA e baselines.
+2. Treinamento da MLP com PyTorch e comparacao de modelos.
+3. Refatoracao em pipeline reproduzivel, testes e API.
+4. Documentacao final, Model Card, plano de monitoramento e video STAR.
+
+## Entregaveis
+
+- Notebook de EDA.
+- Modelos baseline.
+- MLP treinada.
+- Registros de experimentos no MLflow.
+- API de inferencia.
+- Testes passando.
+- Documentacao tecnica.
+- Model Card.
+- Roteiro STAR para apresentacao final.
+- Deploy em nuvem, caso seja realizado como bonus.
