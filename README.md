@@ -116,6 +116,7 @@ ruff check .
 Subir a API localmente:
 
 ```bash
+python -m telco_churn_mlops.train_baseline_model
 uvicorn src.telco_churn_mlops.api:app --reload
 ```
 
