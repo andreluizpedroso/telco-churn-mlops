@@ -17,6 +17,17 @@ Uma operadora de telecomunicacoes esta perdendo clientes em ritmo acelerado. A d
 
 O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria, treinamento de modelos, comparacao de resultados, empacotamento do pipeline, API de inferencia, testes e documentacao final.
 
+## Status Atual
+
+| Item | Status |
+| --- | --- |
+| Estrutura do repositorio | Concluida |
+| EDA e baselines | Concluidos |
+| API FastAPI | Concluida com baseline de Regressao Logistica |
+| MLP PyTorch | Implementada; treino real depende de PyTorch no ambiente ativo |
+| MLflow | Pendente de execucao no ambiente ativo |
+| Documentacao final | Mantida localmente em `docs/`, fora do Git |
+
 ## Objetivos
 
 - Analisar um dataset publico de churn em telecomunicacoes.
