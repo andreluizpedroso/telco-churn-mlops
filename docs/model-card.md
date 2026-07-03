@@ -16,7 +16,7 @@ Modelos considerados:
 
 - `DummyClassifier`: baseline simples que prediz a classe majoritaria.
 - Regressao Logistica balanceada: baseline principal usado na API.
-- MLP em PyTorch: arquitetura implementada, com treino pendente no ambiente ativo.
+- MLP em PyTorch: rede neural treinada para comparacao com o baseline principal.
 
 ## Dataset
 
@@ -71,13 +71,28 @@ O baseline de Regressao Logistica prioriza recall, identificando cerca de 79,7% 
 
 Esse comportamento faz sentido para o problema de negocio, porque deixar de identificar um cliente com alto risco pode custar mais caro do que abordar alguns clientes que nao cancelariam.
 
+## Metricas Da MLP
+
+Modelo: MLP em PyTorch.
+
+Resultados no conjunto de teste:
+
+| Metrica | Valor |
+| --- | ---: |
+| ROC-AUC | 0,835 |
+| F1 | 0,612 |
+| Precision | 0,501 |
+| Recall | 0,786 |
+
+Comparada com a Regressao Logistica, a MLP teve F1 e precision ligeiramente maiores, mas recall um pouco menor. Como a decisao de negocio tende a valorizar a identificacao de clientes em risco, a Regressao Logistica permanece como modelo escolhido para a primeira versao da API.
+
 ## Limitacoes
 
 - O dataset e publico e pode nao representar a distribuicao real de clientes da empresa.
 - O modelo nao incorpora historico temporal detalhado.
 - O modelo pode perder desempenho se o comportamento dos clientes mudar.
-- A MLP ainda precisa ser treinada e comparada no ambiente ativo com PyTorch.
-- O registro com MLflow ainda precisa ser executado quando a dependencia estiver disponivel.
+- A MLP depende de PyTorch corretamente instalado no ambiente de execucao.
+- Os registros locais do MLflow nao sao versionados no Git por serem artefatos de experimento.
 
 ## Vieses E Riscos
 
@@ -108,8 +123,6 @@ Exemplo de uso inadequado:
 
 ## Proximas Melhorias
 
-- Treinar e avaliar a MLP.
-- Registrar experimentos no MLflow.
 - Comparar thresholds usando custo de negocio.
 - Adicionar monitoramento por segmento.
 - Avaliar drift de dados e de performance.

@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import random
 from dataclasses import asdict, dataclass
-from pathlib import Path
 from typing import Any
 
 import joblib
@@ -14,11 +13,12 @@ import pandas as pd
 from sklearn.metrics import f1_score, precision_score, recall_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 
+from telco_churn_mlops import mlp as mlp_runtime
 from telco_churn_mlops.config import MODELS_DIR, RANDOM_STATE
 from telco_churn_mlops.data import TARGET_COLUMN, prepare_processed_data
 from telco_churn_mlops.features import build_preprocessor, split_features_target
 from telco_churn_mlops.mlflow_tracking import log_mlp_results
-from telco_churn_mlops.mlp import ChurnMLP, ensure_torch_is_available, torch
+from telco_churn_mlops.mlp import ChurnMLP, ensure_torch_is_available
 
 
 @dataclass(frozen=True)
@@ -40,11 +40,11 @@ def set_reproducibility(seed: int = RANDOM_STATE) -> None:
     random.seed(seed)
     np.random.seed(seed)
 
-    if torch is not None:
-        torch.manual_seed(seed)
+    if mlp_runtime.torch is not None:
+        mlp_runtime.torch.manual_seed(seed)
         # Deterministic algorithms reduce run-to-run variance. Some operations
         # may still vary by hardware, but this is enough for this project stage.
-        torch.use_deterministic_algorithms(True, warn_only=True)
+        mlp_runtime.torch.use_deterministic_algorithms(True, warn_only=True)
 
 
 def split_train_validation(
@@ -64,13 +64,13 @@ def split_train_validation(
 def to_float_tensor(array: np.ndarray):
     """Convert a numpy array to a PyTorch float tensor."""
     ensure_torch_is_available()
-    return torch.tensor(array, dtype=torch.float32)
+    return mlp_runtime.torch.tensor(array, dtype=mlp_runtime.torch.float32)
 
 
 def make_batches(x_tensor, y_tensor, batch_size: int):
     """Yield shuffled mini-batches for one training epoch."""
     # randperm cria uma ordem aleatoria dos indices a cada epoca.
-    indices = torch.randperm(x_tensor.shape[0])
+    indices = mlp_runtime.torch.randperm(x_tensor.shape[0])
 
     for start in range(0, x_tensor.shape[0], batch_size):
         batch_indices = indices[start : start + batch_size]
@@ -82,9 +82,9 @@ def evaluate_mlp(model, x_tensor, y_true: np.ndarray, threshold: float) -> dict[
     model.eval()
 
     # no_grad desliga o calculo de gradientes, deixando a avaliacao mais leve.
-    with torch.no_grad():
+    with mlp_runtime.torch.no_grad():
         logits = model(x_tensor)
-        probabilities = torch.sigmoid(logits).cpu().numpy()
+        probabilities = mlp_runtime.torch.sigmoid(logits).cpu().numpy()
 
     predictions = (probabilities >= threshold).astype(int)
 
@@ -144,14 +144,17 @@ def train_mlp(config: MLPTrainingConfig | None = None) -> dict[str, Any]:
         hidden_size=config.hidden_size,
         dropout=config.dropout,
     )
-    optimizer = torch.optim.Adam(model.parameters(), lr=config.learning_rate)
+    optimizer = mlp_runtime.torch.optim.Adam(model.parameters(), lr=config.learning_rate)
 
     # Como ha menos clientes com churn do que sem churn, pos_weight aumenta o
     # custo de errar exemplos positivos durante o treino.
     positive_count = float(y_fit.sum())
     negative_count = float((y_fit == 0).sum())
-    pos_weight = torch.tensor([negative_count / positive_count], dtype=torch.float32)
-    loss_fn = torch.nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    pos_weight = mlp_runtime.torch.tensor(
+        [negative_count / positive_count],
+        dtype=mlp_runtime.torch.float32,
+    )
+    loss_fn = mlp_runtime.torch.nn.BCEWithLogitsLoss(pos_weight=pos_weight)
 
     best_validation_auc = -np.inf
     best_state = None
@@ -208,7 +211,7 @@ def train_mlp(config: MLPTrainingConfig | None = None) -> dict[str, Any]:
 
     # O arquivo .pt guarda os pesos da rede; o joblib guarda o preprocessor que
     # precisa ser reutilizado na inferencia.
-    torch.save(model.state_dict(), model_file)
+    mlp_runtime.torch.save(model.state_dict(), model_file)
     joblib.dump(preprocessor, preprocessor_file)
 
     results = {

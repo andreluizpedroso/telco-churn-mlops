@@ -70,7 +70,11 @@ def build_logistic_regression_model(train_df: pd.DataFrame) -> Pipeline:
                 "classifier",
                 # class_weight="balanced" compensa o desbalanceamento entre
                 # clientes com churn e sem churn.
-                LogisticRegression(max_iter=1000, class_weight="balanced", random_state=RANDOM_STATE),
+                LogisticRegression(
+                    max_iter=1000,
+                    class_weight="balanced",
+                    random_state=RANDOM_STATE,
+                ),
             ),
         ]
     )

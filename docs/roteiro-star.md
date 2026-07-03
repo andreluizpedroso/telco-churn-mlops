@@ -32,10 +32,11 @@ As principais acoes foram:
 4. Usei split estratificado para preservar a proporcao de churn.
 5. Treinei baselines com `DummyClassifier` e Regressao Logistica.
 6. Implementei uma MLP em PyTorch com early stopping.
-7. Criei uma API FastAPI com `/health` e `/predict`.
-8. Usei Pydantic para validar os dados de entrada.
-9. Adicionei testes automatizados com Pytest.
-10. Documentei Model Card, arquitetura e plano de monitoramento.
+7. Registrei experimentos, metricas e artefatos com MLflow.
+8. Criei uma API FastAPI com `/health` e `/predict`.
+9. Usei Pydantic para validar os dados de entrada.
+10. Adicionei testes automatizados com Pytest.
+11. Documentei Model Card, arquitetura e plano de monitoramento.
 
 ## R: Result
 
@@ -47,10 +48,12 @@ O baseline de Regressao Logistica apresentou:
 
 O modelo dummy teve ROC-AUC de 0,500 e recall de 0,000, mostrando que a Regressao Logistica e um baseline muito mais util.
 
+A MLP em PyTorch apresentou ROC-AUC de 0,835, F1 de 0,612 e recall de 0,786. Ela ficou muito proxima da Regressao Logistica, mas o baseline permaneceu como escolha inicial da API por ser mais simples e ter recall levemente superior.
+
 A API foi implementada e testada. Ela consegue receber dados de um cliente e retornar probabilidade de churn usando o baseline salvo localmente.
 
 ## Fechamento
 
 O projeto mostra o ciclo completo de machine learning engineering: organizacao, dados, modelo, avaliacao, API, testes e documentacao.
 
-Como proximos passos, eu executaria o treino da MLP em um ambiente com PyTorch ativo, registraria os experimentos no MLflow e avaliaria deploy em nuvem como bonus.
+Como proximos passos, eu avaliaria thresholds com custo de negocio, monitoraria drift em producao e faria deploy em nuvem como bonus.

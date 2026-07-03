@@ -62,7 +62,10 @@ def is_model_available() -> bool:
     return MODEL_FILE.exists()
 
 
-def predict_churn(payload: CustomerFeatures, threshold: float = DEFAULT_THRESHOLD) -> dict[str, Any]:
+def predict_churn(
+    payload: CustomerFeatures,
+    threshold: float = DEFAULT_THRESHOLD,
+) -> dict[str, Any]:
     """Run churn prediction for one customer payload."""
     model = load_model()
     features_df = payload_to_dataframe(payload)

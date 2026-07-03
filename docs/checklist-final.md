@@ -27,8 +27,8 @@
 - [x] Loop de treinamento.
 - [x] Early stopping.
 - [x] Peso para classe positiva.
-- [ ] Treino real executado no ambiente ativo.
-- [ ] Comparacao final MLP vs baseline.
+- [x] Treino real executado no ambiente ativo.
+- [x] Comparacao final MLP vs baseline.
 
 ## MLflow
 
@@ -36,7 +36,7 @@
 - [x] Parametros preparados para registro.
 - [x] Metricas preparadas para registro.
 - [x] Artefatos preparados para registro.
-- [ ] Execucao validada em ambiente com MLflow instalado.
+- [x] Execucao validada em ambiente com MLflow instalado.
 
 ## API
 
@@ -52,7 +52,7 @@
 - [x] Testes com Pytest.
 - [x] Comentarios explicativos no codigo.
 - [x] `compileall` validado.
-- [ ] `ruff` executado no ambiente ativo.
+- [x] `ruff` executado no ambiente ativo.
 
 ## Documentacao Final
 

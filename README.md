@@ -25,8 +25,8 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 | EDA e baselines | Concluidos |
 | Visualizacoes de EDA | Publicadas em `reports/figures/` |
 | API FastAPI | Concluida com baseline de Regressao Logistica |
-| MLP PyTorch | Implementada; treino real depende de PyTorch no ambiente ativo |
-| MLflow | Tracking implementado; execucao depende de MLflow instalado no ambiente ativo |
+| MLP PyTorch | Treinada localmente com PyTorch CPU |
+| MLflow | Tracking executado localmente com parametros, metricas e artefatos |
 | Documentacao final | Publicada em `docs/` com os documentos exigidos pela entrega |
 
 ## Objetivos
@@ -138,6 +138,19 @@ Modelo: Regressao Logistica com `class_weight="balanced"`.
 
 O baseline identifica cerca de 79,7% dos clientes que realmente deram churn no conjunto de teste. Esse resultado serve como referencia para comparacao com a MLP.
 
+## Resultado Da MLP
+
+Modelo: MLP em PyTorch com duas camadas ocultas, dropout, peso para classe positiva e early stopping.
+
+| Metrica | Valor |
+| --- | ---: |
+| ROC-AUC | 0,835 |
+| F1 | 0,612 |
+| Precision | 0,501 |
+| Recall | 0,786 |
+
+A MLP ficou muito proxima da Regressao Logistica em ROC-AUC, com F1 e precision ligeiramente maiores, mas recall um pouco menor. Para o objetivo de retencao, a Regressao Logistica continua sendo uma escolha forte para a API por ser simples, interpretavel e ter recall levemente superior.
+
 ## Visualizacoes
 
 Os graficos exploratorios sao gerados pelo notebook [01_eda_baselines.ipynb](notebooks/01_eda_baselines.ipynb) e publicados em `reports/figures/`.
@@ -163,6 +176,12 @@ Instale o projeto com dependencias de desenvolvimento:
 
 ```bash
 pip install -e ".[dev]"
+```
+
+Em ambiente Windows CPU, a versao validada do PyTorch foi:
+
+```bash
+pip install torch==2.5.1+cpu --index-url https://download.pytorch.org/whl/cpu
 ```
 
 ## Como Reproduzir
@@ -261,6 +280,8 @@ Treinar a MLP:
 $env:PYTHONPATH="src"
 python -m telco_churn_mlops.train_mlp
 ```
+
+Esse comando gera artefatos locais em `models/` e registra a run no MLflow quando a dependencia esta disponivel.
 
 Abrir a interface local do MLflow:
 
