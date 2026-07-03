@@ -16,6 +16,9 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
+# Local documentation notes
+docs/
+
 # Data and model artifacts
 data/raw/*
 data/processed/*
