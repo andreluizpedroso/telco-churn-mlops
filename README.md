@@ -1,5 +1,14 @@
 # Telco Churn MLOps
 
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-MLP-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Baselines-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Inference-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![MLflow](https://img.shields.io/badge/MLflow-Tracking-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-EDA-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-Tests-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![Ruff](https://img.shields.io/badge/Ruff-Linting-D7FF64?style=for-the-badge&logo=ruff&logoColor=black)
+
 Projeto do Tech Challenge Fase 01 para prever churn de clientes de telecomunicacoes com uma rede neural MLP em PyTorch, comparacao com baselines em Scikit-Learn, rastreamento de experimentos com MLflow e API de inferencia com FastAPI.
 
 ## Contexto
@@ -25,12 +34,13 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 |-- data/
 |   |-- raw/          # Dados originais
 |   `-- processed/    # Dados tratados
-|-- docs/             # Documentacao, sprints, Model Card e roteiro STAR
 |-- models/           # Modelos e artefatos treinados
 |-- notebooks/        # EDA e experimentos exploratorios
 |-- src/              # Codigo reutilizavel do projeto
 `-- tests/            # Testes automatizados
 ```
+
+Observacao: a pasta `docs/` e usada apenas localmente e nao e versionada no Git.
 
 ## Requisitos Do Tech Challenge
 
