@@ -156,3 +156,11 @@ python -m telco_churn_mlops.train_mlp
 - Model Card.
 - Roteiro STAR para apresentacao final.
 - Deploy em nuvem, caso seja realizado como bonus.
+
+## Documentacao Final
+
+- [Model Card](docs/model-card.md)
+- [Plano de monitoramento](docs/monitoramento.md)
+- [Arquitetura da solucao](docs/arquitetura.md)
+- [Roteiro STAR](docs/roteiro-star.md)
+- [Checklist final](docs/checklist-final.md)

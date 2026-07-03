@@ -16,8 +16,13 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Local documentation notes
-docs/
+# Documentation
+docs/*
+!docs/model-card.md
+!docs/monitoramento.md
+!docs/arquitetura.md
+!docs/roteiro-star.md
+!docs/checklist-final.md
 
 # Data and model artifacts
 data/raw/*
