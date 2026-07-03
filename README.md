@@ -23,6 +23,7 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 | --- | --- |
 | Estrutura do repositorio | Concluida |
 | EDA e baselines | Concluidos |
+| Visualizacoes de EDA | Publicadas em `reports/figures/` |
 | API FastAPI | Concluida com baseline de Regressao Logistica |
 | MLP PyTorch | Implementada; treino real depende de PyTorch no ambiente ativo |
 | MLflow | Pendente de execucao no ambiente ativo |
@@ -55,7 +56,15 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 |-- notebooks/
 |   `-- 01_eda_baselines.ipynb       # EDA e baselines
 |-- reports/
-|   `-- figures/                     # Graficos gerados pela EDA
+|   `-- figures/                     # Graficos finais gerados pela EDA
+|       |-- 01_churn_distribution.png
+|       |-- 02_churn_by_contract.png
+|       |-- 03_churn_by_payment_method.png
+|       |-- 04_tenure_distribution_by_churn.png
+|       |-- 05_monthly_charges_by_churn.png
+|       |-- 06_confusion_matrix_logistic_regression.png
+|       |-- 07_baseline_metrics_comparison.png
+|       `-- manifest.json
 |-- src/
 |   `-- telco_churn_mlops/
 |       |-- api.py                    # FastAPI: /health e /predict
@@ -220,6 +229,7 @@ Exemplo de payload para `/predict`:
 ## Entregaveis
 
 - Notebook de EDA.
+- Graficos exploratorios em `reports/figures/`.
 - Modelos baseline.
 - MLP treinada.
 - Registros de experimentos no MLflow.
