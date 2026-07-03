@@ -26,7 +26,7 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 | API FastAPI | Concluida com baseline de Regressao Logistica |
 | MLP PyTorch | Implementada; treino real depende de PyTorch no ambiente ativo |
 | MLflow | Pendente de execucao no ambiente ativo |
-| Documentacao final | Mantida localmente em `docs/`, fora do Git |
+| Documentacao final | Publicada em `docs/` com os documentos exigidos pela entrega |
 
 ## Objetivos
 
@@ -45,13 +45,14 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 |-- data/
 |   |-- raw/          # Dados originais
 |   `-- processed/    # Dados tratados
+|-- docs/             # Documentacao final publicada
 |-- models/           # Modelos e artefatos treinados
 |-- notebooks/        # EDA e experimentos exploratorios
 |-- src/              # Codigo reutilizavel do projeto
 `-- tests/            # Testes automatizados
 ```
 
-Observacao: a pasta `docs/` e usada apenas localmente e nao e versionada no Git.
+Observacao: somente a documentacao final da entrega e versionada em `docs/`. Anotacoes internas de sprint e estudo continuam locais e ignoradas pelo Git.
 
 ## Requisitos Do Tech Challenge
 
@@ -80,7 +81,7 @@ A base sugerida e um dataset publico de churn em telecomunicacoes, como o Telco 
 
 ## Metricas
 
-Metricas tecnicas planejadas:
+Metricas tecnicas usadas:
 
 - ROC-AUC
 - F1-score
@@ -94,6 +95,20 @@ Metricas de negocio planejadas:
 - Custo estimado de falso negativo.
 - Estimativa de churn evitado.
 - Comparacao de trade-off entre reter clientes e evitar campanhas desnecessarias.
+
+## Resultados Do Baseline
+
+Modelo: Regressao Logistica com `class_weight="balanced"`.
+
+| Metrica | Valor |
+| --- | ---: |
+| Accuracy | 0,726 |
+| ROC-AUC | 0,835 |
+| F1 | 0,607 |
+| Precision | 0,490 |
+| Recall | 0,797 |
+
+O baseline identifica cerca de 79,7% dos clientes que realmente deram churn no conjunto de teste. Esse resultado serve como referencia para comparacao com a MLP.
 
 ## Setup
 
@@ -127,14 +142,42 @@ ruff check .
 Subir a API localmente:
 
 ```bash
+$env:PYTHONPATH="src"
 python -m telco_churn_mlops.train_baseline_model
-uvicorn src.telco_churn_mlops.api:app --reload
+uvicorn telco_churn_mlops.api:app --reload
 ```
 
 Treinar a MLP:
 
 ```bash
+$env:PYTHONPATH="src"
 python -m telco_churn_mlops.train_mlp
+```
+
+Exemplo de payload para `/predict`:
+
+```json
+{
+  "gender": "Female",
+  "senior_citizen": 0,
+  "partner": "Yes",
+  "dependents": "No",
+  "tenure": 12,
+  "phone_service": "Yes",
+  "multiple_lines": "No",
+  "internet_service": "Fiber optic",
+  "online_security": "No",
+  "online_backup": "Yes",
+  "device_protection": "No",
+  "tech_support": "No",
+  "streaming_tv": "Yes",
+  "streaming_movies": "Yes",
+  "contract": "Month-to-month",
+  "paperless_billing": "Yes",
+  "payment_method": "Electronic check",
+  "monthly_charges": 89.1,
+  "total_charges": 950.5
+}
 ```
 
 ## Plano De Entrega
