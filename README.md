@@ -9,7 +9,7 @@
 ![Pytest](https://img.shields.io/badge/Pytest-Tests-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
 ![Ruff](https://img.shields.io/badge/Ruff-Linting-D7FF64?style=for-the-badge&logo=ruff&logoColor=black)
 
-Projeto do Tech Challenge Fase 01 para prever churn de clientes de telecomunicacoes com uma rede neural MLP em PyTorch, comparacao com baselines em Scikit-Learn, rastreamento de experimentos com MLflow e API de inferencia com FastAPI.
+Projeto para prever churn de clientes de telecomunicacoes com uma rede neural MLP em PyTorch, comparacao com baselines em Scikit-Learn, rastreamento de experimentos com MLflow e API de inferencia com FastAPI.
 
 ## Contexto
 
@@ -70,7 +70,7 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 
 Observacao: somente a documentacao final da entrega e versionada em `docs/`. Anotacoes internas de sprint e estudo continuam locais e ignoradas pelo Git.
 
-## Requisitos Do Tech Challenge
+## Requisitos Do Projeto
 
 - Repositorio GitHub organizado.
 - README com instrucoes de setup, execucao e descricao do projeto.

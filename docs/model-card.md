@@ -2,7 +2,7 @@
 
 ## Visao Geral
 
-Este Model Card descreve o modelo de classificacao de churn desenvolvido para o Tech Challenge Fase 01.
+Este Model Card descreve o modelo de classificacao de churn desenvolvido para previsao de cancelamento de clientes em telecomunicacoes.
 
 O objetivo do modelo e estimar a probabilidade de um cliente de telecomunicacoes cancelar o servico, permitindo priorizar acoes de retencao.
 

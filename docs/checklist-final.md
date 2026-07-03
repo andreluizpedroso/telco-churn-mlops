@@ -1,4 +1,4 @@
-# Checklist Final do Tech Challenge
+# Checklist Final do Projeto
 
 ## Repositorio
 
