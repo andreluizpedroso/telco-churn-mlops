@@ -33,3 +33,23 @@ MLflow e uma ferramenta para registrar experimentos de machine learning. Ela gua
 ### O que e uma API de inferencia?
 
 E uma aplicacao que recebe dados de entrada e devolve uma previsao do modelo. Neste projeto, a API recebera informacoes de um cliente e retornara o risco de churn.
+
+## Sprint 2
+
+### 1. Por que a acuracia pode enganar em problemas de churn?
+
+Porque a base pode estar desbalanceada. Neste dataset, a maioria dos clientes nao deu churn. Um modelo que sempre responde "nao vai cancelar" acerta muitos casos, mas nao ajuda a encontrar os clientes em risco.
+
+Por isso usamos metricas como recall, precision, F1 e ROC-AUC.
+
+### 2. O que significa validacao estratificada?
+
+Significa separar treino e teste mantendo uma proporcao parecida da variavel alvo em cada parte. Se cerca de 26% dos clientes deram churn na base completa, queremos uma proporcao parecida no treino e no teste.
+
+Isso evita uma avaliacao distorcida por uma separacao de dados desequilibrada.
+
+### 3. Por que converter `TotalCharges` para numero?
+
+Porque modelos de machine learning precisam receber variaveis numericas ou categorias bem codificadas. No dataset original, `TotalCharges` vem como texto e alguns valores estao em branco.
+
+Ao converter para numero, conseguimos detectar os valores invalidos, remover as linhas problematicas e usar essa coluna corretamente no modelo.

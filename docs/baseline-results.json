@@ -1,0 +1,48 @@
+{
+  "dataset": {
+    "rows_after_cleaning": 7032,
+    "columns": 21,
+    "churn_rate": 0.26578498293515357,
+    "positive_count": 1869,
+    "negative_count": 5163,
+    "train_rows": 5625,
+    "test_rows": 1407,
+    "random_state": 42
+  },
+  "models": {
+    "dummy_most_frequent": {
+      "accuracy": 0.7341862117981521,
+      "roc_auc": 0.5,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "confusion_matrix": [
+        [
+          1033,
+          0
+        ],
+        [
+          374,
+          0
+        ]
+      ]
+    },
+    "logistic_regression_balanced": {
+      "accuracy": 0.7256574271499645,
+      "roc_auc": 0.8351344145860403,
+      "f1": 0.6069246435845214,
+      "precision": 0.4901315789473684,
+      "recall": 0.7967914438502673,
+      "confusion_matrix": [
+        [
+          723,
+          310
+        ],
+        [
+          76,
+          298
+        ]
+      ]
+    }
+  }
+}
