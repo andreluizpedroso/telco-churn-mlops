@@ -34,7 +34,6 @@ mlartifacts/
 # Keep folder structure
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-!models/.gitkeep
 
 # Environment files
 .env

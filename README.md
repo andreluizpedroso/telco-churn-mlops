@@ -52,7 +52,7 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 |   |-- model-card.md
 |   |-- monitoramento.md
 |   `-- roteiro-star.md
-|-- models/                          # Artefatos treinados locais
+|-- models/                          # Artefatos locais gerados pelo treino
 |-- notebooks/
 |   `-- 01_eda_baselines.ipynb       # EDA e baselines
 |-- reports/
