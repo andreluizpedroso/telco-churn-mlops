@@ -54,6 +54,8 @@ O projeto cobre o fluxo completo: entendimento do problema, analise exploratoria
 |-- models/                          # Artefatos treinados locais
 |-- notebooks/
 |   `-- 01_eda_baselines.ipynb       # EDA e baselines
+|-- reports/
+|   `-- figures/                     # Graficos gerados pela EDA
 |-- src/
 |   `-- telco_churn_mlops/
 |       |-- api.py                    # FastAPI: /health e /predict
@@ -125,6 +127,18 @@ Modelo: Regressao Logistica com `class_weight="balanced"`.
 | Recall | 0,797 |
 
 O baseline identifica cerca de 79,7% dos clientes que realmente deram churn no conjunto de teste. Esse resultado serve como referencia para comparacao com a MLP.
+
+## Visualizacoes
+
+Os graficos exploratorios sao gerados pelo notebook [01_eda_baselines.ipynb](notebooks/01_eda_baselines.ipynb) e publicados em `reports/figures/`.
+
+- [Distribuicao de churn](reports/figures/01_churn_distribution.png)
+- [Churn por tipo de contrato](reports/figures/02_churn_by_contract.png)
+- [Churn por metodo de pagamento](reports/figures/03_churn_by_payment_method.png)
+- [Tenure por churn](reports/figures/04_tenure_distribution_by_churn.png)
+- [MonthlyCharges por churn](reports/figures/05_monthly_charges_by_churn.png)
+- [Matriz de confusao](reports/figures/06_confusion_matrix_logistic_regression.png)
+- [Comparacao de metricas dos baselines](reports/figures/07_baseline_metrics_comparison.png)
 
 ## Setup
 

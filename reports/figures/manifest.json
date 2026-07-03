@@ -1,0 +1,12 @@
+{
+  "figures": [
+    "01_churn_distribution.png",
+    "02_churn_by_contract.png",
+    "03_churn_by_payment_method.png",
+    "04_tenure_distribution_by_churn.png",
+    "05_monthly_charges_by_churn.png",
+    "06_confusion_matrix_logistic_regression.png",
+    "07_baseline_metrics_comparison.png"
+  ],
+  "notes": "Graficos gerados localmente pelo notebook de EDA."
+}
