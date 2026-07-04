@@ -45,3 +45,6 @@ mlflow.db
 Thumbs.db
 .vscode/
 .idea/
+
+# Local reference material
+Tech Challenge Fase 01.pdf
